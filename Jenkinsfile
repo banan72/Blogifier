@@ -4,6 +4,9 @@ pipeline {
         TIMESTAMP = sh(script: "date +%s", returnStdout: true).trim()
         SCREENSHOT_PATH = "screenshots/${TIMESTAMP}"
     }
+
+    tools {nodejs "nodejs"}
+
     stages {
         stage("Build UI") {
             steps {
