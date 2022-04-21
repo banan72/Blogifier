@@ -5,7 +5,7 @@ pipeline {
         SCREENSHOT_PATH = "screenshots/${TIMESTAMP}"
     }
 
-    tools {nodejs "nodejs"}
+    tools {nodejs "NodeJS"}
 
     stages {
         stage("Build UI") {
