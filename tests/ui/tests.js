@@ -6,7 +6,7 @@ fixture("UI Tests")
 /***
  * Function used to generate a random string of specified characters, used for creating new random emails for testing purpose
  * @param length length of the random string wanted
- * @returns a random string of desired length @see length
+ * @returns a random string of desired length
  */
 function makeid(length) {
     var result           = '';
