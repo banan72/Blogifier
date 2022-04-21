@@ -35,5 +35,13 @@ pipeline {
                 }
             }
         }
+
+        stage("performance test") {
+            steps {
+            
+            dir("tests/k6")
+                sh "k6 run sample_test.js"
+            }
+        }
     }
 }
