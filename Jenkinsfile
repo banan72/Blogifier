@@ -27,7 +27,7 @@ pipeline {
             steps {
                 echo "Find a way to let Jenkins execute your TestCafé tests here"
                 sh "npm install testcafe testcafe-reporter-xunit"
-                sh "node_modules/.bin/testcafe firefox tests/ui/tests.js -r xunit:res.xml"
+                sh "node_modules/.bin/testcafe firefox:headless tests/ui/tests.js -r xunit:res.xml"
             }
             post {
                 always {
