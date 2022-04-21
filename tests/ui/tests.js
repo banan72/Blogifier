@@ -53,7 +53,7 @@ test.page(TEST_URL + "/admin/register")("Testing redirect on success", async t =
         .typeText("#registerPassword", "realPassword")
         .typeText("#registerConfirmPassword", "realPassword")
         .click(".btn")
-        .expect(getLocation()).contains("http://localhost:9888/admin/login/?returnUrl=http%3A%2F%2Flocalhost%3A9888%2Fadmin")
+        .expect(getLocation()).contains(TEST_URL + "/admin/login")
         .takeScreenshot()
 })
 
@@ -86,6 +86,6 @@ test.page(TEST_URL + "/admin/login")("Testing redirect on successful login", asy
         .typeText("#loginEmail", "testing@test.com")
         .typeText("#loginPassword", "realPassword")
         .click(".btn")
-        .expect(getLocation()).contains("http://localhost:9888/admin/")
+        .expect(getLocation()).contains(TEST_URL + "/admin/")
         .takeScreenshot()
 })
