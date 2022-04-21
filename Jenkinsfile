@@ -1,8 +1,13 @@
 pipeline {
     agent any
+
     environment {
         TIMESTAMP = sh(script: "date +%s", returnStdout: true).trim()
         SCREENSHOT_PATH = "screenshots/${TIMESTAMP}"
+    }
+
+    triggers {
+        pollSCM "0 0 * * *"
     }
 
     tools {nodejs "NodeJS"}
@@ -39,7 +44,7 @@ pipeline {
         stage("performance test") {
             steps {
                 dir("tests/k6") {
-                    sh "k6 run sample_test.js"
+                    sh "k6 run -e URL=185.51.76.42:9888 sample_test.js"
                 }
             }
         }

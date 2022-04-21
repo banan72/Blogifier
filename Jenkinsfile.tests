@@ -1,0 +1,17 @@
+pipeline {
+    agent any
+
+    triggers {
+        pollSCM "0 0 * * *"
+    }
+
+    stages {
+        stage("performance test") {
+            steps {
+                dir("tests/k6") {
+                    sh "k6 run -e URL=185.51.76.42:9888 stress_test.js"
+                }
+            }
+        }
+    }
+}
