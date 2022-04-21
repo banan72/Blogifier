@@ -2,6 +2,7 @@ import { Selector, ClientFunction } from 'testcafe'
 
 fixture("UI Tests")
 
+const TEST_URL = "185.51.76.42:9888"
 
 /***
  * Function used to generate a random string of specified characters, used for creating new random emails for testing purpose
@@ -20,7 +21,7 @@ function makeid(length) {
 }
 
 
-test.page("http://localhost:9888/admin/register")("Testing no input", async t => {
+test.page(TEST_URL + "/admin/register")("Testing no input", async t => {
     await t
         .click(".btn")
         .expect(Selector("div.form-floating:nth-child(1) > div:nth-child(3)").innerText).eql("The Email field is required.")
@@ -30,7 +31,7 @@ test.page("http://localhost:9888/admin/register")("Testing no input", async t =>
         .takeScreenshot()
 })
 
-test.page("http://localhost:9888/admin/register")("Testing no match password", async t => {
+test.page(TEST_URL + "/admin/register")("Testing no match password", async t => {
     await t
         .typeText("#registerEmail", "test@test.com")
         .typeText("#registerName", "testName")
@@ -41,7 +42,7 @@ test.page("http://localhost:9888/admin/register")("Testing no match password", a
         .takeScreenshot()
 })
 
-test.page("http://localhost:9888/admin/register")("Testing redirect on success", async t => {
+test.page(TEST_URL + "/admin/register")("Testing redirect on success", async t => {
     const getLocation = ClientFunction(() => document.location.href)    //Utility function
 
     let randomEmail = "testing" + makeid(5) + "@test.com"
@@ -60,7 +61,7 @@ test.page("http://localhost:9888/admin/register")("Testing redirect on success",
 
 
 
-test.page("http://localhost:9888/admin/login")("Testing email doesn't exist on login", async t => {
+test.page(TEST_URL + "/admin/login")("Testing email doesn't exist on login", async t => {
     await t
         .typeText("#loginEmail", "doesNotExist@nope.com")
         .typeText("#loginPassword", "randomPass")
@@ -69,7 +70,7 @@ test.page("http://localhost:9888/admin/login")("Testing email doesn't exist on l
         .takeScreenshot()
 })
 
-test.page("http://localhost:9888/admin/login")("Testing password not correct on login", async t => {
+test.page(TEST_URL + "/admin/login")("Testing password not correct on login", async t => {
     await t
         .typeText("#loginEmail", "testing@test.com")
         .typeText("#loginPassword", "notTheCorrectPassword")
@@ -78,7 +79,7 @@ test.page("http://localhost:9888/admin/login")("Testing password not correct on 
         .takeScreenshot()
 })
 
-test.page("http://localhost:9888/admin/login")("Testing redirect on successful login", async t => {
+test.page(TEST_URL + "/admin/login")("Testing redirect on successful login", async t => {
     const getLocation = ClientFunction(() => document.location.href)    //Utility function
 
     await t
